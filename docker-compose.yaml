@@ -1,0 +1,22 @@
+services:
+  api:
+    build: ./
+    container_name: clean-api
+    environment:
+      - NODE_ENV=dev
+    ports:
+      - 3000:3000
+    volumes:
+      - clean-api-volume:/app
+    networks:
+      - clean-api-network
+networks:
+  clean-api-network:
+    driver: bridge
+volumes:
+  clean-api-volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./
+      o: bind
